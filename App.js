@@ -1,11 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Button, StyleSheet } from 'react-native';
 
-export default function App() {
+function Contador() {
+  const [count, setCount] = useState(0);
+
+  const incrementCount = () => {
+    setCount(count + 1);
+  };
+
+  const decrementCount = () => {
+    setCount(count -1);
+  };
+
+  const resetCount = () => {
+    setCount(0);
+  };
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <View style={styles.centeredContent}>
+        <Text>Você clicou {count} vezes</Text>
+        <Button title="Aumentar" onPress={incrementCount} />
+        <Button title="Decrementar" onPress={decrementCount}/>
+        <Button title="Reiniciar" onPress={resetCount} />
+      </View>
     </View>
   );
 }
@@ -13,8 +31,12 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  centeredContent: {
+    alignItems: 'center',
   },
 });
+
+export default Contador;
